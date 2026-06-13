@@ -1,0 +1,2585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo Sudeste Representações</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1a3a2a;
+    --verde-medio: #2d5a3d;
+    --verde-claro: #3d7a52;
+    --dourado: #c9a84c;
+    --dourado-claro: #e8c97a;
+    --creme: #f8f5ee;
+    --branco: #ffffff;
+    --cinza-texto: #4a4a4a;
+    --cinza-claro: #f0ede6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--cinza-texto);
+    background: var(--branco);
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26, 58, 42, 0.97);
+    backdrop-filter: blur(10px);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    transition: all 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--dourado);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+  .nav-logo span { display: block; font-size: 0.65rem; color: rgba(255,255,255,0.6); font-family: 'Inter', sans-serif; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.05em; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--dourado); }
+
+  .nav-cta {
+    background: var(--dourado);
+    color: var(--verde-escuro);
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--dourado-claro); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--dourado); transition: 0.3s; }
+
+  /* ===== HERO ===== */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 50%, #1e4430 100%);
+    display: flex;
+    align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(201,168,76,0.5);
+    color: var(--dourado);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--branco);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title .dourado { color: var(--dourado); }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--dourado);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; margin-top: 0.3rem; }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--dourado);
+    color: var(--verde-escuro);
+    padding: 0.9rem 2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--dourado-claro); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.4); }
+
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: var(--branco);
+    padding: 0.9rem 2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { border-color: var(--dourado); color: var(--dourado); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+  }
+
+  @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+  /* ===== SECTION BASE ===== */
+  section { padding: 100px 5%; }
+
+  .section-eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--verde-escuro);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #666;
+    max-width: 600px;
+  }
+
+  .divider-dourado {
+    width: 50px;
+    height: 3px;
+    background: var(--dourado);
+    margin: 1.5rem 0;
+    border-radius: 2px;
+  }
+
+  /* ===== HISTÓRIA ===== */
+  #historia {
+    background: var(--creme);
+  }
+
+  .historia-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .historia-visual {
+    position: relative;
+  }
+
+  .historia-card-grande {
+    background: var(--verde-escuro);
+    border-radius: 12px;
+    padding: 3rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .historia-card-grande::before {
+    content: '"';
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+  }
+
+  .historia-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .historia-autor {
+    font-size: 0.8rem;
+    color: var(--dourado);
+    letter-spacing: 0.1em;
+  }
+
+  .historia-numeros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .numero-box {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .numero-box .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dourado);
+  }
+
+  .numero-box .desc { font-size: 0.72rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; }
+
+  .historia-texto p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .historia-valores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 2rem;
+  }
+
+  .valor-tag {
+    background: var(--verde-escuro);
+    color: rgba(255,255,255,0.85);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== MARCAS ===== */
+  #marcas { background: var(--branco); }
+
+  .marcas-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin: 3rem 0 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 100px;
+    border: 1.5px solid #ddd;
+    background: transparent;
+    color: #666;
+    font-size: 0.83rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--verde-escuro);
+    border-color: var(--verde-escuro);
+    color: white;
+  }
+
+  .marcas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .marca-card {
+    background: var(--cinza-claro);
+    border-radius: 10px;
+    padding: 1.8rem 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1.5px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .marca-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--dourado);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .marca-card:hover {
+    background: var(--verde-escuro);
+    border-color: var(--verde-escuro);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(26,58,42,0.2);
+  }
+
+  .marca-card:hover::before { transform: scaleX(1); }
+  .marca-card:hover .marca-nome { color: white; }
+  .marca-card:hover .marca-seg { color: var(--dourado); }
+
+  .marca-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--verde-escuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.4rem;
+    transition: background 0.3s;
+  }
+
+  .marca-card:hover .marca-icon { background: var(--dourado); }
+
+  .marca-nome {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--verde-escuro);
+    margin-bottom: 0.3rem;
+    transition: color 0.3s;
+  }
+
+  .marca-seg {
+    font-size: 0.72rem;
+    color: #999;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+
+  .marcas-total {
+    text-align: center;
+    margin-top: 2.5rem;
+    color: #999;
+    font-size: 0.85rem;
+  }
+
+  .marcas-total strong { color: var(--verde-escuro); }
+
+  .catalogos-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: var(--verde-escuro);
+    border-radius: 14px;
+    padding: 2rem 2.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .catalogos-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .catalogos-emoji { font-size: 2.2rem; }
+
+  .catalogos-titulo {
+    font-weight: 700;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .catalogos-sub {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 420px;
+    line-height: 1.5;
+  }
+
+  .btn-catalogo {
+    background: var(--dourado);
+    color: var(--verde-escuro);
+    padding: 0.85rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.3s;
+    flex-shrink: 0;
+  }
+
+  .btn-catalogo:hover {
+    background: var(--dourado-claro);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201,168,76,0.35);
+  }
+
+  /* ===== SEGMENTOS ===== */
+  #segmentos { background: var(--verde-escuro); }
+
+  #segmentos .section-title { color: white; }
+  #segmentos .section-desc { color: rgba(255,255,255,0.65); }
+
+  .segmentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .segmento-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .segmento-card:hover {
+    background: rgba(201,168,76,0.08);
+    border-color: var(--dourado);
+    transform: translateY(-3px);
+  }
+
+  .segmento-emoji { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+  .segmento-nome {
+    font-weight: 600;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .segmento-qtd {
+    font-size: 0.78rem;
+    color: var(--dourado);
+    margin-bottom: 1rem;
+  }
+
+  .segmento-desc { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* ===== REGIÕES ===== */
+  #regioes { background: var(--creme); }
+
+  .regioes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .regioes-cards { display: flex; flex-direction: column; gap: 1rem; }
+
+  .regiao-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--dourado);
+    transition: transform 0.3s;
+  }
+
+  .regiao-card:hover { transform: translateX(6px); }
+
+  .regiao-flag { font-size: 2rem; }
+
+  .regiao-nome { font-weight: 600; color: var(--verde-escuro); font-size: 1rem; }
+  .regiao-desc { font-size: 0.8rem; color: #888; margin-top: 0.2rem; }
+
+  .regioes-mapa {
+    background: var(--verde-escuro);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mapa-br {
+    font-size: 8rem;
+    display: block;
+    opacity: 0.8;
+  }
+
+  .mapa-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--dourado);
+    margin-top: 1rem;
+  }
+
+  .mapa-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+
+  /* ===== DIFERENCIAIS ===== */
+  #diferenciais { background: var(--branco); }
+
+  .diferenciais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .diferencial-card {
+    padding: 2rem;
+    border-radius: 12px;
+    background: var(--creme);
+    border: 1px solid transparent;
+    transition: all 0.3s;
+  }
+
+  .diferencial-card:hover {
+    border-color: var(--dourado);
+    box-shadow: 0 8px 30px rgba(201,168,76,0.12);
+  }
+
+  .diferencial-icone {
+    width: 52px;
+    height: 52px;
+    background: var(--verde-escuro);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .diferencial-titulo { font-weight: 600; color: var(--verde-escuro); margin-bottom: 0.6rem; }
+  .diferencial-desc { font-size: 0.88rem; color: #777; line-height: 1.7; }
+
+  /* ===== CONTATO ===== */
+  #contato { background: var(--verde-escuro); }
+
+  #contato .section-title { color: white; }
+  #contato .section-desc { color: rgba(255,255,255,0.65); }
+
+  .contato-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 3rem;
+  }
+
+  .contato-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .contato-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .contato-icon-box {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .contato-label { font-size: 0.72rem; color: var(--dourado); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .contato-valor { color: rgba(255,255,255,0.9); font-size: 0.95rem; }
+  .contato-valor a { color: rgba(255,255,255,0.9); text-decoration: none; }
+  .contato-valor a:hover { color: var(--dourado); }
+
+  .contato-form {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 2.5rem;
+  }
+
+  .form-titulo { font-family: 'Playfair Display', serif; color: white; font-size: 1.3rem; margin-bottom: 1.5rem; }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  .form-group label { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; letter-spacing: 0.05em; }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--dourado); }
+
+  .form-group select option { background: var(--verde-escuro); }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .btn-enviar {
+    width: 100%;
+    background: var(--dourado);
+    color: var(--verde-escuro);
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-enviar:hover { background: var(--dourado-claro); transform: translateY(-2px); }
+
+  .whatsapp-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #25D366;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    margin-top: 1rem;
+  }
+  .whatsapp-btn:hover { background: #20b858; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,211,102,0.35); }
+
+  /* ===== ÁREA DO REPRESENTANTE ===== */
+  #representante { background: var(--creme); }
+
+  .rep-card {
+    background: var(--verde-escuro);
+    border-radius: 16px;
+    padding: 3rem;
+    max-width: 480px;
+    margin: 3rem auto 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rep-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .rep-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+
+  .rep-sub { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-bottom: 2rem; position: relative; }
+
+  .rep-form { position: relative; }
+
+  .rep-form .form-group { margin-bottom: 1rem; text-align: left; }
+
+  .rep-form .form-group label { color: rgba(255,255,255,0.6); font-size: 0.75rem; }
+
+  .rep-form input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .rep-form input:focus { border-color: var(--dourado); }
+
+  .btn-entrar {
+    width: 100%;
+    background: var(--dourado);
+    color: var(--verde-escuro);
+    border: none;
+    padding: 0.9rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.3s;
+  }
+
+  .btn-entrar:hover { background: var(--dourado-claro); }
+
+  .erro-login {
+    color: #ff6b6b;
+    font-size: 0.82rem;
+    margin-top: 0.8rem;
+    display: none;
+  }
+
+  /* ===== PAINEL REPRESENTANTE ===== */
+  .painel-rep {
+    display: none;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    margin-top: 3rem;
+  }
+
+  .painel-header {
+    background: var(--verde-escuro);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .painel-header h3 { color: white; font-size: 1rem; }
+  .painel-header span { color: var(--dourado); font-size: 0.8rem; }
+
+  .btn-sair {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+  }
+
+  .btn-sair:hover { background: rgba(255,255,255,0.2); }
+
+  .painel-tabs-rep {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    background: #f9f9f9;
+  }
+
+  .painel-tab {
+    padding: 1rem 1.5rem;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: #888;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    font-family: 'Inter', sans-serif;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+
+  .painel-tab.active { color: var(--verde-escuro); border-bottom-color: var(--dourado); }
+
+  .painel-content { padding: 2rem; }
+
+  .painel-section { display: none; }
+  .painel-section.active { display: block; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .info-card {
+    background: var(--creme);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--dourado);
+  }
+
+  .info-card h4 { font-size: 0.78rem; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .info-card p { font-weight: 600; color: var(--verde-escuro); }
+
+  .tabela-comercial {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  .tabela-comercial th {
+    background: var(--verde-escuro);
+    color: white;
+    padding: 0.8rem 1rem;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tabela-comercial td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #eee;
+    color: #555;
+  }
+
+  .tabela-comercial tr:hover td { background: #fafafa; }
+
+  .badge { padding: 0.2rem 0.7rem; border-radius: 100px; font-size: 0.72rem; font-weight: 600; }
+  .badge-verde { background: #e8f5e9; color: #2e7d32; }
+  .badge-amarelo { background: #fff8e1; color: #f57f17; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0f2018;
+    padding: 3rem 5%;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--dourado);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-sub { font-size: 0.78rem; color: rgba(255,255,255,0.35); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; }
+
+  .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.83rem; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--dourado); }
+
+  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+  /* ===== WHATSAPP FLUTUANTE ===== */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: all 0.3s;
+    animation: pulse-wa 2s infinite;
+  }
+
+  .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37,211,102,0.5); }
+
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7); }
+  }
+
+  /* ===== ANIMAÇÕES SCROLL ===== */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 0 4%; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+
+    section { padding: 70px 4%; }
+
+    .historia-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .regioes-grid { grid-template-columns: 1fr; }
+    .contato-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; justify-content: center; }
+  }
+
+  /* ===== PLAYBOOK ===== */
+  .playbook-marcas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .playbook-card {
+    background: var(--creme);
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    text-align: center;
+  }
+
+  .playbook-card:hover, .playbook-card.ativo {
+    border-color: var(--dourado);
+    background: white;
+    box-shadow: 0 6px 20px rgba(201,168,76,0.15);
+    transform: translateY(-2px);
+  }
+
+  .playbook-card-emoji { font-size: 2rem; margin-bottom: 0.8rem; display:block; }
+  .playbook-card-nome { font-weight: 700; color: var(--verde-escuro); font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .playbook-card-seg { font-size: 0.72rem; color: #999; margin-bottom: 0.8rem; }
+  .playbook-card-faturamento { font-size: 0.78rem; color: var(--dourado); font-weight: 600; }
+
+  .playbook-detalhe {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+
+  .playbook-detalhe-header {
+    background: var(--verde-escuro);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  .playbook-detalhe-titulo { color: white; font-weight: 700; font-size: 1.1rem; }
+  .playbook-detalhe-seg { color: var(--dourado); font-size: 0.78rem; }
+
+  .btn-fechar-playbook {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    transition: background 0.3s;
+  }
+  .btn-fechar-playbook:hover { background: rgba(255,255,255,0.25); }
+
+  .playbook-detalhe-body {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .playbook-detalhe-body { grid-template-columns: 1fr; }
+  }
+
+  .playbook-bloco {
+    background: var(--creme);
+    border-radius: 10px;
+    padding: 1.2rem;
+  }
+
+  .playbook-bloco-titulo {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--dourado);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+
+  .playbook-bloco ul {
+    padding-left: 1rem;
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  .playbook-bloco p {
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  .playbook-script {
+    grid-column: 1 / -1;
+    background: var(--verde-escuro);
+    border-radius: 10px;
+    padding: 1.2rem;
+  }
+
+  .playbook-script .playbook-bloco-titulo { color: var(--dourado-claro); }
+
+  .playbook-script p {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.88rem;
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  /* ===== PEDIDOS PAINEL ===== */
+  .form-pedido .form-group label { color: #555; }
+  .form-pedido .form-group input,
+  .form-pedido .form-group select,
+  .form-pedido .form-group textarea {
+    background: var(--creme);
+    border: 1.5px solid #e0ddd6;
+    color: var(--cinza-texto);
+  }
+  .form-pedido .form-group input:focus,
+  .form-pedido .form-group select:focus,
+  .form-pedido .form-group textarea:focus { border-color: var(--dourado); }
+  .form-pedido .form-group select option { background: white; color: var(--cinza-texto); }
+  .form-pedido .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 600px) { .form-pedido .form-grid-2 { grid-template-columns: 1fr; } }
+
+  /* ===== TRABALHE CONOSCO ===== */
+  #trabalhe-conosco { background: var(--verde-escuro); }
+  #trabalhe-conosco .section-title { color: white; }
+  #trabalhe-conosco .section-desc { color: rgba(255,255,255,0.65); }
+
+  .trabalhe-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .trabalhe-beneficios {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+
+  .beneficio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .beneficio-item span:first-child { font-size: 1.2rem; }
+
+  .candidatura-sucesso {
+    display: none;
+    background: rgba(37,211,102,0.12);
+    border: 1px solid rgba(37,211,102,0.4);
+    border-radius: 8px;
+    padding: 1.2rem;
+    text-align: center;
+    color: #4cdb8a;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .trabalhe-content { grid-template-columns: 1fr; gap: 3rem; }
+    .trabalhe-beneficios { grid-template-columns: 1fr; }
+  }
+
+  /* ===== GESTÃO / DESEMPENHO ===== */
+  .badge-azul { background: #e3f2fd; color: #1565c0; }
+  .badge-recusado { background: #fce4ec; color: #c62828; }
+  .progresso-wrap { background: #e0ddd6; border-radius: 100px; height: 10px; overflow: hidden; margin: 0.5rem 0; }
+  .progresso-fill { height: 100%; border-radius: 100px; background: linear-gradient(to right, var(--verde-claro), var(--dourado)); transition: width 0.8s ease; }
+  .desempenho-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .desempenho-card { background: var(--creme); border-radius: 10px; padding: 1.2rem; border-left: 4px solid var(--dourado); }
+  .desempenho-card h5 { font-size: 0.72rem; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; font-weight: 600; }
+  .desempenho-card .val { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--verde-escuro); line-height: 1.2; }
+  .gestao-secao { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid #eee; }
+  .gestao-secao:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    Grupo Sudeste
+    <span>Representações Comerciais</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#historia">Nossa História</a></li>
+    <li><a href="#marcas">Marcas</a></li>
+    <li><a href="#segmentos">Segmentos</a></li>
+    <li><a href="#regioes">Regiões</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="#representante" class="nav-cta">Área do Representante</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <span class="hero-badge">Representação Comercial B2B</span>
+    <h1 class="hero-title">
+      CONECTANTO123 <span class="dourado">indústrias</span><br>
+      e lojistas há<br>
+      mais de 30 anos
+    </h1>
+    <p class="hero-sub">
+      O Grupo Sudeste Representações é referência em representação comercial nos estados do Rio de Janeiro, Minas Gerais e Espírito Santo, com um portfólio de mais de 27 marcas e atendimento a milhares de lojistas.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">27+</div>
+        <div class="stat-label">Marcas representadas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Anos de experiência</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Estados atendidos</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#marcas" class="btn-primary">Ver nossas marcas →</a>
+      <a href="#contato" class="btn-outline">Fale conosco</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- HISTÓRIA -->
+<section id="historia">
+  <span class="section-eyebrow">Nossa Trajetória</span>
+  <h2 class="section-title">Três décadas construindo<br>relações comerciais sólidas</h2>
+  <div class="divider-dourado"></div>
+
+  <div class="historia-grid">
+    <div class="historia-visual fade-up">
+      <div class="historia-card-grande">
+        <p class="historia-quote">
+          "Mais de 30 anos conectando fabricantes e lojistas com atendimento próximo, honesto e comprometido com resultados."
+        </p>
+        <div class="historia-autor">— Fábio Fontes, Fundador</div>
+        <div class="historia-numeros">
+          <div class="numero-box">
+            <div class="num">RJ</div>
+            <div class="desc">Rio de Janeiro</div>
+          </div>
+          <div class="numero-box">
+            <div class="num">MG</div>
+            <div class="desc">Minas Gerais</div>
+          </div>
+          <div class="numero-box">
+            <div class="num">ES</div>
+            <div class="desc">Espírito Santo</div>
+          </div>
+          <div class="numero-box">
+            <div class="num">B2B</div>
+            <div class="desc">Foco atacadista</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="historia-texto fade-up">
+      <p>
+        Fundado por Fábio Fontes, o Grupo Sudeste nasceu da visão de criar uma ponte confiável entre grandes indústrias e os lojistas do interior e capital, levando produtos de qualidade com atendimento consultivo e personalizado.
+      </p>
+      <p>
+        Ao longo das décadas, a empresa consolidou uma rede robusta de clientes em todo o Sudeste, tornando-se referência pela diversidade de marcas representadas e pela qualidade do relacionamento construído com cada parceiro comercial.
+      </p>
+      <p>
+        Hoje, o Grupo Sudeste opera com uma equipe dedicada, plataforma B2B própria e um portfólio que abrange cama, mesa e banho, utilidades domésticas, confecções, brinquedos e muito mais.
+      </p>
+      <div class="historia-valores">
+        <span class="valor-tag">Honestidade</span>
+        <span class="valor-tag">Compromisso</span>
+        <span class="valor-tag">Relacionamento</span>
+        <span class="valor-tag">Inovação</span>
+        <span class="valor-tag">Resultados</span>
+        <span class="valor-tag">Atendimento Humanizado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section id="marcas">
+  <span class="section-eyebrow">Portfólio</span>
+  <h2 class="section-title">Nossas marcas representadas</h2>
+  <div class="divider-dourado"></div>
+  <p class="section-desc">Trabalhamos com as melhores indústrias do Brasil, oferecendo diversidade e qualidade em um único atendimento.</p>
+
+  <div class="marcas-tabs">
+    <button class="tab-btn" onclick="filtrarMarcas('todas')">Todas</button>
+    <button class="tab-btn active" onclick="filtrarMarcas('cama')">🛏 Cama, Mesa e Banho</button>
+    <button class="tab-btn" onclick="filtrarMarcas('utilidades')">🏠 Utilidades Domésticas</button>
+    <button class="tab-btn" onclick="filtrarMarcas('confeccoes')">👕 Confecções</button>
+    <button class="tab-btn" onclick="filtrarMarcas('brinquedos')">🧸 Brinquedos</button>
+  </div>
+
+  <div class="marcas-grid" id="marcasGrid"></div>
+
+  <p class="marcas-total" id="marcasTotal"></p>
+
+  <div class="catalogos-banner">
+    <div class="catalogos-banner-content">
+      <span class="catalogos-emoji">📂</span>
+      <div>
+        <div class="catalogos-titulo">Acesse nossos catálogos digitais</div>
+        <div class="catalogos-sub">Todos os catálogos organizados por marca, disponíveis para consulta imediata — sem precisar pedir.</div>
+      </div>
+    </div>
+    <a href="https://linktr.ee/gruposudesterio" target="_blank" class="btn-catalogo">Ver catálogos →</a>
+  </div>
+</section>
+
+<!-- SEGMENTOS -->
+<section id="segmentos">
+  <span class="section-eyebrow" style="color:var(--dourado-claro)">O que representamos</span>
+  <h2 class="section-title">Segmentos de atuação</h2>
+  <div class="divider-dourado"></div>
+  <p class="section-desc">Diversidade de categorias para atender qualquer perfil de lojista.</p>
+
+  <div class="segmentos-grid">
+    <div class="segmento-card fade-up">
+      <span class="segmento-emoji">🛏</span>
+      <div class="segmento-nome">Cama, Mesa e Banho</div>
+      <div class="segmento-qtd">3 marcas</div>
+      <div class="segmento-desc">Travesseiros, jogos de cama, toalhas, edredons, cobertores e muito mais para o seu estoque.</div>
+    </div>
+    <div class="segmento-card fade-up">
+      <span class="segmento-emoji">🏠</span>
+      <div class="segmento-nome">Utilidades Domésticas</div>
+      <div class="segmento-qtd">11 marcas</div>
+      <div class="segmento-desc">Panelas, plásticos, organização, ferramentas e produtos para o lar com excelente giro.</div>
+    </div>
+    <div class="segmento-card fade-up">
+      <span class="segmento-emoji">👕</span>
+      <div class="segmento-nome">Confecções</div>
+      <div class="segmento-qtd">13 marcas</div>
+      <div class="segmento-desc">Moda feminina, masculina, infantil e jeans das principais marcas do mercado nacional.</div>
+    </div>
+    <div class="segmento-card fade-up">
+      <span class="segmento-emoji">🧸</span>
+      <div class="segmento-nome">Brinquedos</div>
+      <div class="segmento-qtd">3 marcas</div>
+      <div class="segmento-desc">Linha infantil completa com marcas de alta rotatividade e excelente aceitação no varejo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REGIÕES -->
+<section id="regioes">
+  <span class="section-eyebrow">Cobertura</span>
+  <h2 class="section-title">Atuamos em todo o Sudeste</h2>
+  <div class="divider-dourado"></div>
+
+  <div class="regioes-grid">
+    <div class="regioes-cards">
+      <div class="regiao-card fade-up">
+        <div class="regiao-flag">🏖</div>
+        <div>
+          <div class="regiao-nome">Rio de Janeiro</div>
+          <div class="regiao-desc">Capital e interior — cobertura completa do estado</div>
+        </div>
+      </div>
+      <div class="regiao-card fade-up">
+        <div class="regiao-flag">⛰</div>
+        <div>
+          <div class="regiao-nome">Minas Gerais</div>
+          <div class="regiao-desc">Atendimento às principais praças do estado</div>
+        </div>
+      </div>
+      <div class="regiao-card fade-up">
+        <div class="regiao-flag">🌊</div>
+        <div>
+          <div class="regiao-nome">Espírito Santo</div>
+          <div class="regiao-desc">Presença consolidada no mercado capixaba</div>
+        </div>
+      </div>
+      <div class="regiao-card fade-up" style="border-left-color: var(--verde-claro)">
+        <div class="regiao-flag">🗺</div>
+        <div>
+          <div class="regiao-nome">Outras regiões</div>
+          <div class="regiao-desc">Atendimento conforme a representada — consulte-nos</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="regioes-mapa fade-up">
+      <span class="mapa-br">🗺️</span>
+      <div class="mapa-text">Sudeste do Brasil</div>
+      <div class="mapa-sub">RJ · MG · ES — nossa área de operação</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <span class="section-eyebrow">Por que escolher o Grupo Sudeste</span>
+  <h2 class="section-title">Nossos diferenciais</h2>
+  <div class="divider-dourado"></div>
+
+  <div class="diferenciais-grid">
+    <div class="diferencial-card fade-up">
+      <div class="diferencial-icone">🤝</div>
+      <div class="diferencial-titulo">Atendimento consultivo</div>
+      <div class="diferencial-desc">Não somos apenas fornecedores. Entendemos o seu negócio e indicamos os produtos certos para o seu perfil de cliente.</div>
+    </div>
+    <div class="diferencial-card fade-up">
+      <div class="diferencial-icone">📦</div>
+      <div class="diferencial-titulo">Várias marcas, um atendimento</div>
+      <div class="diferencial-desc">Compre de múltiplos fabricantes em um único pedido, economizando tempo e simplificando sua operação de compras.</div>
+    </div>
+    <div class="diferencial-card fade-up">
+      <div class="diferencial-icone">💻</div>
+      <div class="diferencial-titulo">Plataforma B2B própria</div>
+      <div class="diferencial-desc">Faça seus pedidos online, consulte catálogos digitais e acompanhe seus pedidos pela nossa plataforma exclusiva.</div>
+    </div>
+    <div class="diferencial-card fade-up">
+      <div class="diferencial-icone">⏱</div>
+      <div class="diferencial-titulo">30 anos de experiência</div>
+      <div class="diferencial-desc">Décadas de atuação no mercado nos deram o conhecimento para entender cada região, cada segmento e cada cliente.</div>
+    </div>
+    <div class="diferencial-card fade-up">
+      <div class="diferencial-icone">📊</div>
+      <div class="diferencial-titulo">Suporte completo</div>
+      <div class="diferencial-desc">Do cadastro ao pós-venda, acompanhamos cada etapa da sua jornada como cliente com transparência e compromisso.</div>
+    </div>
+    <div class="diferencial-card fade-up">
+      <div class="diferencial-icone">🌎</div>
+      <div class="diferencial-titulo">Presença regional forte</div>
+      <div class="diferencial-desc">Conhecemos profundamente os mercados de RJ, MG e ES, o que nos permite fazer indicações precisas e eficazes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <span class="section-eyebrow" style="color:var(--dourado-claro)">Fale conosco</span>
+  <h2 class="section-title">Entre em contato</h2>
+  <div class="divider-dourado"></div>
+  <p class="section-desc">Seja para solicitar catálogo, fazer um pedido ou conhecer melhor nosso portfólio — estamos prontos para te atender.</p>
+
+  <div class="contato-grid">
+    <div class="contato-info fade-up">
+      <div class="contato-item">
+        <div class="contato-icon-box">📱</div>
+        <div>
+          <div class="contato-label">WhatsApp Comercial</div>
+          <div class="contato-valor"><a href="https://wa.me/5500000000000" target="_blank">(XX) XXXXX-XXXX</a></div>
+        </div>
+      </div>
+      <div class="contato-item">
+        <div class="contato-icon-box">✉️</div>
+        <div>
+          <div class="contato-label">E-mail</div>
+          <div class="contato-valor"><a href="mailto:contato@gruposudeste.com.br">contato@gruposudeste.com.br</a></div>
+        </div>
+      </div>
+      <div class="contato-item">
+        <div class="contato-icon-box">📍</div>
+        <div>
+          <div class="contato-label">Localização</div>
+          <div class="contato-valor">Itaperuna, Rio de Janeiro — RJ</div>
+        </div>
+      </div>
+      <div class="contato-item">
+        <div class="contato-icon-box">🕐</div>
+        <div>
+          <div class="contato-label">Horário de atendimento</div>
+          <div class="contato-valor">Segunda a Sexta, 8h às 18h</div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/5500000000000" target="_blank" class="whatsapp-btn">
+        <span>💬</span>
+        Falar pelo WhatsApp agora
+      </a>
+
+      <a href="#" class="btn-primary" style="justify-content:center; text-align:center;">
+        🛒 Faça seu pedido online
+      </a>
+    </div>
+
+    <div class="contato-form fade-up">
+      <div class="form-titulo">Solicite um catálogo</div>
+      <div class="form-group">
+        <label>Seu nome</label>
+        <input type="text" placeholder="Nome completo">
+      </div>
+      <div class="form-group">
+        <label>Empresa / Loja</label>
+        <input type="text" placeholder="Nome da empresa">
+      </div>
+      <div class="form-group">
+        <label>WhatsApp</label>
+        <input type="tel" placeholder="(XX) XXXXX-XXXX">
+      </div>
+      <div class="form-group">
+        <label>Cidade / Estado</label>
+        <input type="text" placeholder="Ex: Itaperuna / RJ">
+      </div>
+      <div class="form-group">
+        <label>Segmento de interesse</label>
+        <select>
+          <option value="">Selecione...</option>
+          <option>Cama, Mesa e Banho</option>
+          <option>Utilidades Domésticas</option>
+          <option>Confecções</option>
+          <option>Brinquedos</option>
+          <option>Todos os segmentos</option>
+        </select>
+      </div>
+      <button class="btn-enviar" onclick="enviarContato()">
+        📨 Solicitar catálogo
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ÁREA DO REPRESENTANTE -->
+<section id="representante">
+  <span class="section-eyebrow">Acesso restrito</span>
+  <h2 class="section-title" style="text-align:center">Área do Representante</h2>
+  <div class="divider-dourado" style="margin:1rem auto"></div>
+  <p class="section-desc" style="text-align:center; margin: 0 auto 0">Acesso exclusivo para representantes e equipe comercial do Grupo Sudeste.</p>
+
+  <div class="rep-card" id="loginCard">
+    <h3 class="rep-titulo">🔐 Acesso Comercial</h3>
+    <p class="rep-sub">Digite suas credenciais para continuar</p>
+    <div class="rep-form">
+      <div class="form-group">
+        <label>Usuário</label>
+        <input type="text" id="loginUser" placeholder="Seu usuário" onkeypress="if(event.key==='Enter') fazerLogin()">
+      </div>
+      <div class="form-group">
+        <label>Senha</label>
+        <input type="password" id="loginPass" placeholder="Sua senha" onkeypress="if(event.key==='Enter') fazerLogin()">
+      </div>
+      <button class="btn-entrar" onclick="fazerLogin()">Entrar →</button>
+      <div class="erro-login" id="erroLogin">❌ Usuário ou senha incorretos</div>
+    </div>
+  </div>
+
+  <div class="painel-rep" id="painelRep">
+    <div class="painel-header">
+      <div>
+        <h3>Painel do Representante</h3>
+        <span id="nomeRep">Bem-vindo!</span>
+      </div>
+      <button class="btn-sair" onclick="sair()">Sair</button>
+    </div>
+    <div class="painel-tabs-rep">
+      <button class="painel-tab active" onclick="trocarTab('info')">📋 Informações Gerais</button>
+      <button class="painel-tab" onclick="trocarTab('politica')">📄 Política Comercial</button>
+      <button class="painel-tab" onclick="trocarTab('marcas')">🏷 Marcas & Contatos</button>
+      <button class="painel-tab" onclick="trocarTab('como-pedir')">🛒 Como Fazer Pedidos</button>
+      <button class="painel-tab" onclick="trocarTab('playbook')">📚 Playbook de Marcas</button>
+      <button class="painel-tab" onclick="trocarTab('pedidos')">📦Enviar Pedidos</button>
+      <button class="painel-tab" id="tab-btn-gestao" style="display:none" onclick="trocarTab('gestao')">📊 Gestão</button>
+    </div>
+    <div class="painel-content">
+
+      <div class="painel-section active" id="tab-info">
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Regiões atendidas</h4>
+            <p>RJ · MG · ES</p>
+          </div>
+          <div class="info-card">
+            <h4>Marcas ativas</h4>
+            <p>27+ representadas</p>
+          </div>
+          <div class="info-card">
+            <h4>Atendimento</h4>
+            <p>Seg–Sex 8h–18h</p>
+          </div>
+          <div class="info-card">
+            <h4>Plataforma B2B</h4>
+            <p>Disponível online</p>
+          </div>
+        </div>
+        <h4 style="margin-bottom:1rem;color:var(--verde-escuro)">Contatos internos</h4>
+        <table class="tabela-comercial">
+          <thead>
+            <tr><th>Setor</th><th>Contato</th><th>Canal</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Comercial / Vendas</td><td>Equipe Rafael Fontes</td><td>WhatsApp</td><td><span class="badge badge-verde">Disponível</span></td></tr>
+            <tr><td>Suporte ao Vendedor</td><td>Equipe Rafael Fontes</td><td>WhatsApp</td><td><span class="badge badge-verde">Disponível</span></td></tr>
+            <tr><td>Marketing</td><td>Equipe Rafael Fontes</td><td>WhatsApp</td><td><span class="badge badge-verde">Disponível</span></td></tr>
+            <tr><td>Financeiro — Contas a Pagar</td><td>Thais Dias</td><td>WhatsApp</td><td><span class="badge badge-verde">Disponível</span></td></tr>
+            <tr><td>Financeiro — Contas a Receber</td><td>Carine Fontes</td><td>WhatsApp</td><td><span class="badge badge-verde">Disponível</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="painel-section" id="tab-politica">
+        <h4 style="margin-bottom:1.5rem;color:var(--verde-escuro)">Política Comercial — Regras Gerais</h4>
+        <div class="info-grid">
+          <div class="info-card">
+            <h4>Pedido mínimo</h4>
+            <p>Varia por marca</p>
+          </div>
+          <div class="info-card">
+            <h4>Formas de pagamento</h4>
+            <p>PIX · Boleto · Cartão*</p>
+          </div>
+          <div class="info-card">
+            <h4>Prazo de entrega</h4>
+            <p>Conforme fornecedor</p>
+          </div>
+          <div class="info-card">
+            <h4>Desconto especial</h4>
+            <p>Consultar gerência</p>
+          </div>
+        </div>
+        <div style="background:#f8f5ee;border-radius:10px;padding:1.5rem;margin-top:1rem;border-left:4px solid var(--dourado)">
+          <strong style="color:var(--verde-escuro)">⚠️ Importante:</strong>
+          <ul style="margin-top:0.8rem;padding-left:1.2rem;color:#555;font-size:0.88rem;line-height:1.8">
+            <li>Descontos diferenciados devem ser aprovados pela gerência</li>
+            <li>Análise de crédito obrigatória para novos clientes</li>
+            <li>Reserva de mercadoria sujeita a disponibilidade de estoque</li>
+            <li>Cancelamento de pedido conforme status de faturamento</li>
+            <li>Negociações especiais: encaminhar para Fábio Fontes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="painel-section" id="tab-marcas">
+        <h4 style="margin-bottom:1.5rem;color:var(--verde-escuro)">Marcas & Segmentos</h4>
+        <table class="tabela-comercial">
+          <thead>
+            <tr><th>Marca</th><th>Segmento</th><th>Pedido mínimo</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sultan</td><td>Cama, Mesa e Banho</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Manhattan</td><td>Cama, Mesa e Banho</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Palma Luzani</td><td>Cama, Mesa e Banho</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Panelux</td><td>Utilidades Domésticas</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Nix House</td><td>Utilidades Domésticas</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Startools</td><td>Utilidades/Ferramentas</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Wilbertex</td><td>Confecções</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>W Kids</td><td>Moda Infantil</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Lecimar</td><td>Confecções</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Arrumadinhos</td><td>Moda Infantil</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>Pitbull</td><td>Confecções</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+            <tr><td>CDKA</td><td>Confecções</td><td>Consultar</td><td><span class="badge badge-verde">Ativa</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="painel-section" id="tab-como-pedir">
+
+        <h4 style="margin-bottom:0.4rem;color:var(--verde-escuro);font-size:1.1rem">Como Funciona o Programa de Parceiros GSR</h4>
+        <p style="font-size:0.85rem;color:#888;margin-bottom:2rem">Entenda os dois caminhos de representação e como crescer dentro do Grupo Sudeste.</p>
+
+        <!-- Seção 1: Dois caminhos -->
+        <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dourado);font-weight:600;margin-bottom:1rem">Dois caminhos, uma meta</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2rem">
+          <div style="background:rgba(61,122,82,0.08);border:2px solid rgba(61,122,82,0.25);border-radius:12px;padding:1.8rem">
+            <div style="font-size:1.8rem;margin-bottom:0.8rem">🤝</div>
+            <div style="font-weight:700;color:var(--verde-escuro);font-size:1rem;margin-bottom:0.3rem">Representante Parceiro</div>
+            <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--verde-claro);margin-bottom:1rem">Entrada — Sem burocracia</div>
+            <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.55rem">
+              <li style="font-size:0.84rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem"><span style="color:var(--verde-claro);font-weight:700;flex-shrink:0">✓</span>Envia pedidos pelo painel do site</li>
+              <li style="font-size:0.84rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem"><span style="color:var(--verde-claro);font-weight:700;flex-shrink:0">✓</span>Acessa playbook e catálogos</li>
+              <li style="font-size:0.84rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem"><span style="color:var(--verde-claro);font-weight:700;flex-shrink:0">✓</span>Acompanha seus resultados aqui</li>
+              <li style="font-size:0.84rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem"><span style="color:var(--verde-claro);font-weight:700;flex-shrink:0">✓</span>Sem custo e sem burocracia</li>
+            </ul>
+          </div>
+          <div style="background:rgba(201,168,76,0.1);border:2px solid rgba(201,168,76,0.4);border-radius:12px;padding:1.8rem;position:relative;overflow:hidden">
+            <div style="position:absolute;top:1rem;right:1rem;background:var(--dourado);color:var(--verde-escuro);font-size:0.67rem;font-weight:700;padding:0.25rem 0.65rem;border-radius:100px;letter-spacing:0.05em">OBJETIVO</div>
+            <div style="font-size:1.8rem;margin-bottom:0.8rem">⭐</div>
+            <div style="font-weight:700;color:var(--verde-escuro);font-size:1rem;margin-bottom:0.3rem">Representante Oficial</div>
+            <div style="font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#b8882e;margin-bottom:1rem">Time GSR — Máximas vantagens</div>
+            <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.55rem">
+              <li style="font-size:0.84rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem"><span style="color:var(--dourado);font-weight:700;flex-shrink:0">★</span>Envia pedidos pelo Mercos</li>
+              <li style="font-size:0.84rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem"><span style="color:var(--dourado);font-weight:700;flex-shrink:0">★</span>Faz parte do time oficial GSR</li>
+              <li style="font-size:0.84rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem"><span style="color:var(--dourado);font-weight:700;flex-shrink:0">★</span>Recebe comissão progressiva completa</li>
+              <li style="font-size:0.84rem;color:#555;display:flex;align-items:flex-start;gap:0.6rem"><span style="color:var(--dourado);font-weight:700;flex-shrink:0">★</span>Suporte prioritário da equipe</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Seção 2: Como virar Oficial -->
+        <div style="padding-top:2rem;border-top:1px solid #eee;margin-bottom:2rem">
+          <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dourado);font-weight:600;margin-bottom:1.2rem">Como virar Representante Oficial</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
+            <div style="background:var(--verde-escuro);border-radius:12px;padding:1.5rem;text-align:center">
+              <div style="width:36px;height:36px;background:var(--dourado);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:var(--verde-escuro);margin:0 auto 1rem">1</div>
+              <div style="font-size:1.5rem;margin-bottom:0.6rem">📦</div>
+              <div style="font-weight:600;color:white;font-size:0.9rem;margin-bottom:0.5rem">Envie seus pedidos pelo painel</div>
+              <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.6">Use a aba <strong style="color:var(--dourado-claro)">Como Enviar Pedidos</strong> para registrar cada venda realizada.</div>
+            </div>
+            <div style="background:var(--verde-escuro);border-radius:12px;padding:1.5rem;text-align:center">
+              <div style="width:36px;height:36px;background:var(--dourado);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:var(--verde-escuro);margin:0 auto 1rem">2</div>
+              <div style="font-size:1.5rem;margin-bottom:0.6rem">🎯</div>
+              <div style="font-weight:600;color:white;font-size:0.9rem;margin-bottom:0.5rem">Bata R$&nbsp;30.000 por 3 meses</div>
+              <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.6">Acompanhe seu progresso em <strong style="color:var(--dourado-claro)">Meu Desempenho</strong> e mantenha o ritmo por 3 meses seguidos.</div>
+            </div>
+            <div style="background:var(--verde-escuro);border-radius:12px;padding:1.5rem;text-align:center">
+              <div style="width:36px;height:36px;background:var(--dourado);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:var(--verde-escuro);margin:0 auto 1rem">3</div>
+              <div style="font-size:1.5rem;margin-bottom:0.6rem">🏆</div>
+              <div style="font-weight:600;color:white;font-size:0.9rem;margin-bottom:0.5rem">Entre para o time oficial</div>
+              <div style="font-size:0.8rem;color:rgba(255,255,255,0.6);line-height:1.6">Acesso ao <strong style="color:var(--dourado-claro)">Mercos</strong>, comissão progressiva completa e todas as vantagens do time GSR.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seção 3: Por que vale a pena -->
+        <div style="padding-top:2rem;border-top:1px solid #eee">
+          <div style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--dourado);font-weight:600;margin-bottom:1.2rem">Por que vale a pena</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:0.8rem">
+            <div style="background:var(--creme);border-radius:10px;padding:1.2rem;text-align:center;border-bottom:3px solid var(--dourado)">
+              <div style="font-size:1.6rem;margin-bottom:0.5rem">📦</div>
+              <div style="font-weight:600;font-size:0.83rem;color:var(--verde-escuro);line-height:1.4">Acesso a 27 marcas representadas</div>
+            </div>
+            <div style="background:var(--creme);border-radius:10px;padding:1.2rem;text-align:center;border-bottom:3px solid var(--dourado)">
+              <div style="font-size:1.6rem;margin-bottom:0.5rem">📚</div>
+              <div style="font-weight:600;font-size:0.83rem;color:var(--verde-escuro);line-height:1.4">Playbook e catálogos sempre atualizados</div>
+            </div>
+            <div style="background:var(--creme);border-radius:10px;padding:1.2rem;text-align:center;border-bottom:3px solid var(--dourado)">
+              <div style="font-size:1.6rem;margin-bottom:0.5rem">🤝</div>
+              <div style="font-weight:600;font-size:0.83rem;color:var(--verde-escuro);line-height:1.4">Suporte da equipe comercial GSR</div>
+            </div>
+            <div style="background:var(--creme);border-radius:10px;padding:1.2rem;text-align:center;border-bottom:3px solid var(--dourado)">
+              <div style="font-size:1.6rem;margin-bottom:0.5rem">💰</div>
+              <div style="font-weight:600;font-size:0.83rem;color:var(--verde-escuro);line-height:1.4">Bonificações extras por desempenho</div>
+            </div>
+            <div style="background:var(--creme);border-radius:10px;padding:1.2rem;text-align:center;border-bottom:3px solid var(--dourado)">
+              <div style="font-size:1.6rem;margin-bottom:0.5rem">📈</div>
+              <div style="font-weight:600;font-size:0.83rem;color:var(--verde-escuro);line-height:1.4">Crescimento com meta clara e transparente</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="painel-section" id="tab-playbook">
+        <h4 style="margin-bottom:0.5rem;color:var(--verde-escuro)">📚 Playbook de Marcas — Top 5</h4>
+        <p style="font-size:0.82rem;color:#999;margin-bottom:1.5rem">Consulte antes de ligar. Informações essenciais para vender cada marca com confiança.</p>
+
+        <div class="playbook-marcas" id="playbookLista">
+          <!-- cards gerados pelo JS -->
+        </div>
+        <div class="playbook-detalhe" id="playbookDetalhe" style="display:none"></div>
+      </div>
+
+      <div class="painel-section" id="tab-pedidos">
+
+        <!-- PARTE 1: Formulário -->
+        <h4 style="margin-bottom:1.5rem;color:var(--verde-escuro)">📝 Registrar Novo Pedido</h4>
+        <div class="form-pedido">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Nome do cliente</label>
+              <input type="text" id="ped-cliente" placeholder="Nome completo">
+            </div>
+            <div class="form-group">
+              <label>Cidade</label>
+              <input type="text" id="ped-cidade" placeholder="Ex: Itaperuna / RJ">
+            </div>
+            <div class="form-group">
+              <label>WhatsApp do cliente</label>
+              <input type="tel" id="ped-whatsapp" placeholder="(XX) XXXXX-XXXX">
+            </div>
+            <div class="form-group">
+              <label>Marca</label>
+              <select id="ped-marca">
+                <option value="">Selecione...</option>
+                <option>Sultan</option>
+                <option>Startools</option>
+                <option>Nix House</option>
+                <option>Wellmix</option>
+                <option>Lecimar</option>
+                <option>Panelux</option>
+                <option>Wilbertex</option>
+                <option>VST</option>
+                <option>Manhattan</option>
+                <option>Outras</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Produtos / itens do pedido IDEIA;AQUI PODE ENTRAR UM UPLOAD DE ARQUIVO PARA O VEND. MANDAR O PEDIDO via FOTO/EXEL... OU OQ FOR.</label>
+            <textarea id="ped-produtos" placeholder="Descreva os produtos e quantidades... ADICIONAR UMA VALIDAÇÃO NO PAINEL DO GESTOR PARA ''ACEITAR'' O ENVIO DO PEDIDO DO VEND. AI SIM IRA CALCULAR NO SISTEMA APOS APROVAÇÃO DO GESTOR"></textarea>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Valor estimado (R$)</label>
+              <input type="number" id="ped-valor" placeholder="0,00" min="0" step="0.01">
+            </div>
+            <div class="form-group">
+              <label>Observações</label>
+              <input type="text" id="ped-obs" placeholder="Condições, prazo, urgência...">
+            </div>
+          </div>
+          <button class="btn-enviar" onclick="salvarPedido()">💾 Salvar Pedido</button>
+          <div id="pedidoSucesso" style="display:none;background:rgba(37,211,102,0.12);border:1px solid rgba(37,211,102,0.4);border-radius:8px;padding:1rem;text-align:center;color:#4cdb8a;font-weight:600;margin-top:1rem">
+            ✅ Pedido registrado com sucesso!
+          </div>
+        </div>
+
+        <!-- PARTE 2: Meus Pedidos -->
+        <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid #eee">
+          <h4 style="margin-bottom:1rem;color:var(--verde-escuro)">📋 Meus Pedidos</h4>
+          <div id="meusPedidosContainer"></div>
+        </div>
+
+        <!-- PARTE 3: Desempenho -->
+        <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid #eee" id="desempenhoContainer"></div>
+
+      </div>
+
+      <div class="painel-section" id="tab-gestao">
+
+        <!-- Seção 1: Todos os Pedidos -->
+        <div class="gestao-secao">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:0.8rem">
+            <h4 style="color:var(--verde-escuro)">📦 Todos os Pedidos</h4>
+            <button class="btn-sair" style="background:var(--verde-escuro);border-color:var(--verde-escuro)" onclick="renderGestao()">🔄 Atualizar</button>
+          </div>
+          <div id="todosPedidosContainer"></div>
+        </div>
+
+        <!-- Seção 2: Ranking -->
+        <div class="gestao-secao">
+          <h4 style="margin-bottom:1rem;color:var(--verde-escuro)">🏆 Ranking de Vendedores — Mês Atual</h4>
+          <div id="rankingContainer"></div>
+        </div>
+
+        <!-- Seção 3: Candidaturas -->
+        <div class="gestao-secao">
+          <h4 style="margin-bottom:1rem;color:var(--verde-escuro)">📩 Candidaturas Recebidas</h4>
+          <div id="candidaturasGestaoContainer"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRABALHE CONOSCO -->
+<section id="trabalhe-conosco">
+  <span class="section-eyebrow" style="color:var(--dourado-claro)">Oportunidades</span>
+  <h2 class="section-title">Faça parte do nosso time</h2>
+  <div class="divider-dourado"></div>
+
+  <div class="trabalhe-content">
+    <div class="fade-up">
+      <p class="section-desc">
+        Seja um consultor comercial do Grupo Sudeste e trabalhe com as melhores marcas do mercado B2B.
+        Construa sua própria carteira de clientes com autonomia, flexibilidade e o suporte completo
+        de uma empresa com mais de 30 anos de experiência nos estados do Rio de Janeiro, Minas Gerais e Espírito Santo.
+      </p>
+      <p class="section-desc" style="margin-top:1rem">
+        Não importa se você está começando ou já tem experiência em vendas — o que buscamos é disposição,
+        comprometimento e vontade de crescer com a gente.
+      </p>
+      <div class="trabalhe-beneficios">
+        <div class="beneficio-item"><span>💰</span><span>Comissionamento atrativo</span></div>
+        <div class="beneficio-item"><span>🤝</span><span>Suporte e treinamento</span></div>
+        <div class="beneficio-item"><span>📦</span><span>Portfólio de 27+ marcas</span></div>
+        <div class="beneficio-item"><span>🗺️</span><span>Território de atuação</span></div>
+      </div>
+    </div>
+
+    <div class="fade-up">
+      <div class="contato-form">
+        <div class="form-titulo">Envie sua candidatura</div>
+        <div class="form-group">
+          <label>Nome completo</label>
+          <input type="text" id="cand-nome" placeholder="Seu nome completo">
+        </div>
+        <div class="form-group">
+          <label>Cidade / Estado</label>
+          <input type="text" id="cand-cidade" placeholder="Ex: Itaperuna / RJ">
+        </div>
+        <div class="form-group">
+          <label>WhatsApp</label>
+          <input type="tel" id="cand-whatsapp" placeholder="(XX) XXXXX-XXXX">
+        </div>
+        <div class="form-group">
+          <label>Experiência em vendas</label>
+          <select id="cand-experiencia">
+            <option value="">Selecione...</option>
+            <option>Nenhuma</option>
+            <option>Menos de 1 ano</option>
+            <option>1 a 3 anos</option>
+            <option>Mais de 3 anos</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Segmento que já trabalhou</label>
+          <select id="cand-segmento">
+            <option value="">Selecione...</option>
+            <option>Cama, Mesa e Banho</option>
+            <option>Utilidades Domésticas</option>
+            <option>Confecções</option>
+            <option>Brinquedos</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensagem livre</label>
+          <textarea id="cand-mensagem" placeholder="Conte sobre você, sua experiência e por que quer fazer parte do Grupo Sudeste..."></textarea>
+        </div>
+        <button class="btn-enviar" onclick="enviarCandidatura()">
+          🚀 Enviar candidatura
+        </button>
+        <div class="candidatura-sucesso" id="candidaturaSucesso">
+          ✅ Candidatura enviada com sucesso! Entraremos em contato em breve pelo WhatsApp.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Grupo Sudeste Representações</div>
+  <div class="footer-sub">Representação Comercial B2B · Desde 1990+</div>
+  <div class="footer-links">
+    <a href="#historia">Nossa História</a>
+    <a href="#marcas">Marcas</a>
+    <a href="#segmentos">Segmentos</a>
+    <a href="#regioes">Regiões</a>
+    <a href="#contato">Contato</a>
+    <a href="#representante">Área do Representante</a>
+  </div>
+  <div class="footer-copy">© 2026 Grupo Sudeste Representações. Todos os direitos reservados.</div>
+</footer>
+
+<!-- WhatsApp Flutuante -->
+<a href="https://wa.me/5500000000000" target="_blank" class="whatsapp-float" title="Fale pelo WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<script>
+// ===== MARCAS =====
+const marcas = [
+  { nome: 'Manhattan', seg: 'Cama, Mesa e Banho', cat: 'cama', emoji: '🛏' },
+  { nome: 'Palma Luzani', seg: 'Cama, Mesa e Banho', cat: 'cama', emoji: '🛏' },
+  { nome: 'Sultan', seg: 'Cama, Mesa e Banho', cat: 'cama', emoji: '🛏' },
+  { nome: 'Panelux', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'Fenima', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'Mundiart', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'Nix House', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'Startools', seg: 'Ferramentas', cat: 'utilidades', emoji: '🔧' },
+  { nome: 'Wellmix', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'JMD', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'Rainha Plásticos', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'STD Home', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'Madefer', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏠' },
+  { nome: 'Porcelanas São Francisco', seg: 'Utilidades Domésticas', cat: 'utilidades', emoji: '🏺' },
+  { nome: 'Wilbertex', seg: 'Confecções', cat: 'confeccoes', emoji: '👕' },
+  { nome: 'W Kids', seg: 'Moda Infantil', cat: 'confeccoes', emoji: '👶' },
+  { nome: 'VST', seg: 'Confecções', cat: 'confeccoes', emoji: '👕' },
+  { nome: 'Sangos Malhas', seg: 'Confecções', cat: 'confeccoes', emoji: '👕' },
+  { nome: 'Pitbull', seg: 'Confecções', cat: 'confeccoes', emoji: '👖' },
+  { nome: 'Lecimar', seg: 'Moda Feminina', cat: 'confeccoes', emoji: '👗' },
+  { nome: 'Kaeru Jeans', seg: 'Jeans', cat: 'confeccoes', emoji: '👖' },
+  { nome: 'Kaab Jeans', seg: 'Jeans', cat: 'confeccoes', emoji: '👖' },
+  { nome: 'Junkes Baby', seg: 'Moda Bebê', cat: 'confeccoes', emoji: '👶' },
+  { nome: 'CDKA', seg: 'Confecções', cat: 'confeccoes', emoji: '👕' },
+  { nome: 'Arrumadinhos', seg: 'Moda Infantil', cat: 'confeccoes', emoji: '👶' },
+  { nome: 'Fenix', seg: 'Brinquedos', cat: 'brinquedos', emoji: '🧸' },
+  { nome: 'Wellkids', seg: 'Brinquedos', cat: 'brinquedos', emoji: '🧸' },
+  { nome: 'JMD', seg: 'Brinquedos', cat: 'brinquedos', emoji: '🎮' },
+];
+
+let catAtual = "cama";
+
+function filtrarMarcas(cat) {
+  catAtual = cat;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderMarcas();
+}
+
+function renderMarcas() {
+  const grid = document.getElementById('marcasGrid');
+  const total = document.getElementById('marcasTotal');
+  const filtradas = catAtual === 'todas' ? marcas : marcas.filter(m => m.cat === catAtual);
+  
+  grid.innerHTML = filtradas.map(m => `
+    <div class="marca-card">
+      <div class="marca-icon">${m.emoji}</div>
+      <div class="marca-nome">${m.nome}</div>
+      <div class="marca-seg">${m.seg}</div>
+    </div>
+  `).join('');
+
+  total.innerHTML = `Exibindo <strong>${filtradas.length}</strong> marca${filtradas.length !== 1 ? 's' : ''}`;
+}
+
+renderMarcas();
+
+// ===== LOGIN REPRESENTANTE =====
+const usuarios = [
+  { user: 'fabio', senha: 'gsr2024', nome: 'Fábio Fontes — Diretor Comercial' },
+  { user: 'rafael', senha: 'rafael', nome: 'Rafael Fontes — Gestão' },
+  { user: 'representante', senha: 'sudeste123', nome: 'Representante Comercial' },
+];
+
+let usuarioAtual = null;
+
+function fazerLogin() {
+  const u = document.getElementById('loginUser').value.trim().toLowerCase();
+  const s = document.getElementById('loginPass').value;
+  const found = usuarios.find(x => x.user === u && x.senha === s);
+
+  if (found) {
+    usuarioAtual = u;
+    document.getElementById('loginCard').style.display = 'none';
+    document.getElementById('painelRep').style.display = 'block';
+    document.getElementById('nomeRep').textContent = found.nome;
+    document.getElementById('erroLogin').style.display = 'none';
+
+    const btnGestao = document.getElementById('tab-btn-gestao');
+    if (u === 'rafael' || u === 'fabio') {
+      btnGestao.style.display = 'inline-block';
+    } else {
+      btnGestao.style.display = 'none';
+    }
+    renderMeusPedidos();
+    renderDesempenho();
+  } else {
+    document.getElementById('erroLogin').style.display = 'block';
+  }
+}
+
+function sair() {
+  usuarioAtual = null;
+  document.getElementById('loginCard').style.display = 'block';
+  document.getElementById('painelRep').style.display = 'none';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('tab-btn-gestao').style.display = 'none';
+  document.querySelectorAll('.painel-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.painel-section').forEach(s => s.classList.remove('active'));
+  document.querySelector('.painel-tab').classList.add('active');
+  document.getElementById('tab-info').classList.add('active');
+}
+
+function trocarTab(id) {
+  document.querySelectorAll('.painel-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.painel-section').forEach(s => s.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+  if (id === 'gestao') renderGestao();
+}
+
+// ===== CONTATO =====
+function enviarContato() {
+  alert('✅ Solicitação enviada! Em breve nossa equipe entrará em contato pelo WhatsApp.');
+}
+
+// ===== SCROLL ANIMATIONS =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ===== MENU MOBILE =====
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  const cta = document.querySelector('.nav-cta');
+  if (links.style.display === 'flex') {
+    links.style.display = 'none';
+    cta.style.display = 'none';
+  } else {
+    links.style.display = 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '70px';
+    links.style.left = '0'; links.style.right = '0';
+    links.style.background = 'var(--verde-escuro)';
+    links.style.padding = '1rem 2rem 2rem';
+    cta.style.display = 'block';
+  }
+}
+
+// ===== PLAYBOOK =====
+const playbookData = [
+  {
+    nome: 'Sultan',
+    emoji: '🛏',
+    seg: 'Cama, Mesa e Banho',
+    faturamento: 'R$ 5,4M / ano',
+    clienteIdeal: ['Lojas de enxoval', 'Magazines e lojas de variedades', 'Supermercados com seção têxtil', 'Lojas de utilidades domésticas'],
+    produtos: ['Travesseiros (alto giro)', 'Jogos de cama estampados', 'Toalhas de banho', 'Edredons e cobertores', 'Protetores de colchão'],
+    politica: ['Pedido mínimo: R$ 3.000', 'Frete: FOB (cliente paga)', 'Prazo: consultar tabela', 'NF: padrão'],
+    objecoes: [
+      { obj: '"Já tenho fornecedor de cama"', resp: 'Sultan tem giro muito alto — entra como complemento, não substitui. O produto vende sozinho na gôndola.' },
+      { obj: '"Está caro"', resp: 'A margem do lojista é boa e o produto tem demanda constante. Cama, mesa e banho não tem sazonalidade.' },
+    ],
+    script: '"[Nome], trabalho com a Sultan, uma das maiores marcas de cama, mesa e banho do Brasil. Tenho travesseiros e jogos de cama com giro excelente, pedido mínimo de R$3 mil. Posso te mandar o catálogo agora pelo WhatsApp?"'
+  },
+  {
+    nome: 'Startools',
+    emoji: '🔧',
+    seg: 'Ferramentas e Utilidades',
+    faturamento: 'R$ 1,0M / ano',
+    clienteIdeal: ['Lojas de ferragens', 'Magazines com seção ferramentas', 'Lojas de construção', 'Lojas de utilidades gerais'],
+    produtos: ['Ferramentas manuais', 'Ferramentas para construção', 'Kits de ferramentas', 'Acessórios gerais'],
+    politica: ['Pedido mínimo: R$ 3.000', 'Frete: CIF (SP, PR, SC, RJ) / FOB outros estados', 'NF: 33'],
+    objecoes: [
+      { obj: '"Não trabalho com ferramentas"', resp: 'Startools é utilidade doméstica também — não é só ferraria. Mix amplo que atende loja de variedades e magazine.' },
+      { obj: '"Não tenho espaço"', resp: 'O mix é compacto e de alto giro. Começa com o básico e vai crescendo conforme a demanda.' },
+    ],
+    script: '"[Nome], tenho a Startools, linha de ferramentas e utilidades com ótimo custo-benefício. Mínimo R$3 mil, frete incluso pra RJ. Posso enviar o catálogo?"'
+  },
+  {
+    nome: 'Nix House',
+    emoji: '🏠',
+    seg: 'Utilidades Domésticas',
+    faturamento: 'R$ 878K / ano',
+    clienteIdeal: ['Lojas de utilidades domésticas', 'Magazines', 'Lojas de organização', 'Lojas de R$1,99 e variedades'],
+    produtos: ['Organização e armazenamento', 'Utensílios de cozinha', 'Produtos para o lar', 'Linha de plásticos'],
+    politica: ['Pedido mínimo: R$ 2.000 (geral) / R$ 3.500 CIF RJ', 'Frete: CIF RJ com mínimo 3,5k', 'NF: 50'],
+    objecoes: [
+      { obj: '"Já tenho organização de outro fornecedor"', resp: 'Nix House tem design diferenciado e preço competitivo. Vale ter como segunda opção — o cliente final compara.' },
+      { obj: '"Mínimo alto"', resp: 'R$2 mil se monta fácil com o mix deles. Posso te ajudar a montar um pedido equilibrado.' },
+    ],
+    script: '"[Nome], trabalho com a Nix House, utilidades domésticas e organização com design moderno. Mínimo R$2 mil, frete CIF pra RJ. Posso te mandar o catálogo?"'
+  },
+  {
+    nome: 'Wellmix',
+    emoji: '🍳',
+    seg: 'Utilidades Domésticas',
+    faturamento: 'R$ 852K / ano',
+    clienteIdeal: ['Lojas de utilidades', 'Magazines', 'Supermercados', 'Lojas de cozinha e lar'],
+    produtos: ['Panelas e frigideiras', 'Utilidades de cozinha', 'Linha lar completa', 'Mix de produtos domésticos'],
+    politica: ['Pedido mínimo: R$ 3.000', 'Frete: CIF', 'Prazo: consultar tabela'],
+    objecoes: [
+      { obj: '"Não vendo muito utensílio"', resp: 'Wellmix tem mix variado — não é só panela. Tem produtos que giram bem em qualquer tipo de loja.' },
+      { obj: '"Tenho estoque parado de outra marca"', resp: 'Wellmix tem giro rápido. Começa com o básico que vende e vai repondo conforme sai.' },
+    ],
+    script: '"[Nome], tenho a Wellmix, utilidades domésticas completas, panelas, cozinha e lar. Mínimo R$3 mil, frete incluso. Posso te enviar o catálogo agora?"'
+  },
+  {
+    nome: 'Lecimar',
+    emoji: '👗',
+    seg: 'Moda Feminina',
+    faturamento: 'R$ 337K / ano',
+    clienteIdeal: ['Lojas de moda feminina', 'Boutiques', 'Lojas multimarca', 'Lojas de roupa casual'],
+    produtos: ['Moda feminina casual', 'Peças de alta rotatividade', 'Coleções sazonais', 'Linha básica feminina'],
+    politica: ['Pedido mínimo: R$ 2.000', 'Frete: CIF', 'Alta rotatividade de coleções'],
+    objecoes: [
+      { obj: '"Já tenho fornecedor de roupa"', resp: 'Lecimar complementa o mix. Alta rotatividade e campanhas promocionais ajudam a girar o estoque.' },
+      { obj: '"Roupa é difícil de vender"', resp: 'Lecimar trabalha com básico feminino — não é moda difícil. Peças que o cliente repõe todo mês.' },
+    ],
+    script: '"[Nome], trabalho com a Lecimar, moda feminina com alto giro e campanhas que ajudam o lojista a vender mais. Mínimo R$2 mil, frete incluso. Posso te enviar o catálogo?"'
+  }
+];
+
+function abrirPlaybook(idx) {
+  document.querySelectorAll('.playbook-card').forEach(c => c.classList.remove('ativo'));
+  document.querySelectorAll('.playbook-card')[idx].classList.add('ativo');
+  
+  const m = playbookData[idx];
+  const det = document.getElementById('playbookDetalhe');
+  
+  det.innerHTML = `
+    <div class="playbook-detalhe-header">
+      <div>
+        <div class="playbook-detalhe-titulo">${m.emoji} ${m.nome}</div>
+        <div class="playbook-detalhe-seg">${m.seg} · ${m.faturamento}</div>
+      </div>
+      <button class="btn-fechar-playbook" onclick="fecharPlaybook()">✕ Fechar</button>
+    </div>
+    <div class="playbook-detalhe-body">
+      <div class="playbook-bloco">
+        <div class="playbook-bloco-titulo">👤 Cliente ideal</div>
+        <ul>${m.clienteIdeal.map(i => `<li>${i}</li>`).join('')}</ul>
+      </div>
+      <div class="playbook-bloco">
+        <div class="playbook-bloco-titulo">📦 Produtos mais vendidos</div>
+        <ul>${m.produtos.map(i => `<li>${i}</li>`).join('')}</ul>
+      </div>
+      <div class="playbook-bloco">
+        <div class="playbook-bloco-titulo">📋 Política comercial</div>
+        <ul>${m.politica.map(i => `<li>${i}</li>`).join('')}</ul>
+      </div>
+      <div class="playbook-bloco">
+        <div class="playbook-bloco-titulo">💬 Objeções comuns</div>
+        ${m.objecoes.map(o => `<p style="margin-bottom:0.8rem"><strong style="color:var(--verde-escuro)">${o.obj}</strong><br>${o.resp}</p>`).join('')}
+      </div>
+      <div class="playbook-script">
+        <div class="playbook-bloco-titulo">🎯 Script de abordagem</div>
+        <p>${m.script}</p>
+      </div>
+    </div>
+  `;
+  
+  det.style.display = 'block';
+  det.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function fecharPlaybook() {
+  document.getElementById('playbookDetalhe').style.display = 'none';
+  document.querySelectorAll('.playbook-card').forEach(c => c.classList.remove('ativo'));
+}
+
+function renderPlaybook() {
+  const lista = document.getElementById('playbookLista');
+  if (!lista) return;
+  lista.innerHTML = playbookData.map((m, i) => `
+    <div class="playbook-card" onclick="abrirPlaybook(${i})">
+      <span class="playbook-card-emoji">${m.emoji}</span>
+      <div class="playbook-card-nome">${m.nome}</div>
+      <div class="playbook-card-seg">${m.seg}</div>
+      <div class="playbook-card-faturamento">${m.faturamento}</div>
+    </div>
+  `).join('');
+}
+
+renderPlaybook();
+
+// ===== CANDIDATURAS =====
+function enviarCandidatura() {
+  const nome = document.getElementById('cand-nome').value.trim();
+  const cidade = document.getElementById('cand-cidade').value.trim();
+  const whatsapp = document.getElementById('cand-whatsapp').value.trim();
+  const experiencia = document.getElementById('cand-experiencia').value;
+  const segmento = document.getElementById('cand-segmento').value;
+  const mensagem = document.getElementById('cand-mensagem').value.trim();
+
+  if (!nome || !whatsapp) {
+    alert('Por favor, preencha pelo menos o nome completo e o WhatsApp.');
+    return;
+  }
+
+  const candidatura = {
+    nome, cidade, whatsapp, experiencia, segmento, mensagem,
+    data: new Date().toLocaleString('pt-BR')
+  };
+
+  const lista = JSON.parse(localStorage.getItem('gsr_candidaturas') || '[]');
+  lista.push(candidatura);
+  localStorage.setItem('gsr_candidaturas', JSON.stringify(lista));
+
+  ['cand-nome', 'cand-cidade', 'cand-whatsapp', 'cand-mensagem'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('cand-experiencia').value = '';
+  document.getElementById('cand-segmento').value = '';
+
+  const sucesso = document.getElementById('candidaturaSucesso');
+  sucesso.style.display = 'block';
+  setTimeout(() => { sucesso.style.display = 'none'; }, 6000);
+}
+
+function salvarPedido() {
+  const cliente = document.getElementById('ped-cliente').value.trim();
+  const cidade = document.getElementById('ped-cidade').value.trim();
+  const whatsapp = document.getElementById('ped-whatsapp').value.trim();
+  const marca = document.getElementById('ped-marca').value;
+  const produtos = document.getElementById('ped-produtos').value.trim();
+  const valorRaw = document.getElementById('ped-valor').value;
+  const obs = document.getElementById('ped-obs').value.trim();
+
+  if (!cliente || !marca || !produtos) {
+    alert('Preencha pelo menos o nome do cliente, a marca e os produtos.');
+    return;
+  }
+
+  const pedido = {
+    cliente, cidade, whatsapp, marca, produtos,
+    valor: valorRaw ? parseFloat(valorRaw) : 0,
+    obs,
+    data: new Date().toLocaleString('pt-BR'),
+    vendedor: usuarioAtual,
+    status: 'Novo'
+  };
+
+  const lista = JSON.parse(localStorage.getItem('gsr_pedidos') || '[]');
+  lista.push(pedido);
+  localStorage.setItem('gsr_pedidos', JSON.stringify(lista));
+
+  ['ped-cliente', 'ped-cidade', 'ped-whatsapp', 'ped-produtos', 'ped-obs'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('ped-marca').value = '';
+  document.getElementById('ped-valor').value = '';
+
+  const suc = document.getElementById('pedidoSucesso');
+  suc.style.display = 'block';
+  setTimeout(() => { suc.style.display = 'none'; }, 4000);
+
+  renderMeusPedidos();
+  renderDesempenho();
+}
+
+function badgeStatus(s) {
+  const map = { 'Novo': 'badge-amarelo', 'Em Análise': 'badge-azul', 'Aprovado': 'badge-verde', 'Recusado': 'badge-recusado' };
+  return `<span class="badge ${map[s] || 'badge-amarelo'}">${s || 'Novo'}</span>`;
+}
+
+function renderMeusPedidos() {
+  const container = document.getElementById('meusPedidosContainer');
+  if (!container) return;
+  const todos = JSON.parse(localStorage.getItem('gsr_pedidos') || '[]');
+  const meus = todos.filter(p => p.vendedor === usuarioAtual);
+  if (meus.length === 0) {
+    container.innerHTML = '<p style="color:#bbb;text-align:center;padding:1.5rem;font-style:italic;font-size:0.88rem">Nenhum pedido enviado ainda.</p>';
+    return;
+  }
+  container.innerHTML = `
+    <div style="overflow-x:auto">
+      <table class="tabela-comercial">
+        <thead><tr><th>Data</th><th>Cliente</th><th>Cidade</th><th>Marca</th><th>Valor</th><th>Status</th></tr></thead>
+        <tbody>
+          ${meus.slice().reverse().map(p => `
+            <tr>
+              <td style="font-size:0.78rem;color:#888">${p.data}</td>
+              <td><strong>${p.cliente}</strong></td>
+              <td>${p.cidade || '—'}</td>
+              <td>${p.marca}</td>
+              <td>${p.valor ? 'R$ ' + p.valor.toLocaleString('pt-BR', {minimumFractionDigits:2}) : '—'}</td>
+              <td>${badgeStatus(p.status)}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function renderDesempenho() {
+  const container = document.getElementById('desempenhoContainer');
+  if (!container) return;
+  const agora = new Date();
+  const todos = JSON.parse(localStorage.getItem('gsr_pedidos') || '[]');
+  const meus = todos.filter(p => {
+    if (p.vendedor !== usuarioAtual) return false;
+    try {
+      const pt = p.data.split(/[\/ ,:]/);
+      const d = new Date(parseInt(pt[2]), parseInt(pt[1]) - 1, parseInt(pt[0]));
+      return d.getMonth() === agora.getMonth() && d.getFullYear() === agora.getFullYear();
+    } catch { return false; }
+  });
+  const totalPedidos = meus.length;
+  const totalValor = meus.reduce((s, p) => s + (p.valor || 0), 0);
+  const ticketMedio = totalPedidos > 0 ? totalValor / totalPedidos : 0;
+  const meta = 30000;
+  const pct = Math.min(100, (totalValor / meta) * 100);
+  const mesNome = agora.toLocaleString('pt-BR', {month: 'long', year: 'numeric'});
+  container.innerHTML = `
+    <h4 style="margin-bottom:1rem;color:var(--verde-escuro)">📊 Meu Desempenho — ${mesNome}</h4>
+    <div class="desempenho-grid">
+      <div class="desempenho-card"><h5>Pedidos no mês</h5><div class="val">${totalPedidos}</div></div>
+      <div class="desempenho-card"><h5>Valor total</h5><div class="val" style="font-size:1.15rem">R$ ${totalValor.toLocaleString('pt-BR', {minimumFractionDigits:2})}</div></div>
+      <div class="desempenho-card"><h5>Ticket médio</h5><div class="val" style="font-size:1.15rem">R$ ${ticketMedio.toLocaleString('pt-BR', {minimumFractionDigits:2})}</div></div>
+    </div>
+    <div style="background:var(--creme);border-radius:10px;padding:1.2rem;border-left:4px solid var(--dourado)">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:0.82rem;font-weight:600;color:var(--verde-escuro)">Meta mensal: R$ 30.000</span>
+        <span style="font-size:0.88rem;color:var(--dourado);font-weight:700">${pct.toFixed(1)}%</span>
+      </div>
+      <div class="progresso-wrap"><div class="progresso-fill" style="width:${pct}%"></div></div>
+      <div style="font-size:0.75rem;color:#888;margin-top:0.4rem">
+        ${totalValor >= meta ? '🎉 Meta atingida!' : `Faltam R$ ${(meta - totalValor).toLocaleString('pt-BR', {minimumFractionDigits:2})} para a meta`}
+      </div>
+    </div>`;
+}
+
+function renderGestao() {
+  renderTodosPedidos();
+  renderRanking();
+  renderCandidaturasGestao();
+}
+
+function renderTodosPedidos() {
+  const container = document.getElementById('todosPedidosContainer');
+  if (!container) return;
+  const todos = JSON.parse(localStorage.getItem('gsr_pedidos') || '[]');
+  if (todos.length === 0) {
+    container.innerHTML = '<p style="color:#bbb;text-align:center;padding:1.5rem;font-style:italic;font-size:0.88rem">Nenhum pedido registrado ainda.</p>';
+    return;
+  }
+  const statusOps = ['Novo', 'Em Análise', 'Aprovado', 'Recusado'];
+  container.innerHTML = `
+    <div style="overflow-x:auto">
+      <table class="tabela-comercial">
+        <thead><tr><th>Data</th><th>Vendedor</th><th>Cliente</th><th>Cidade</th><th>Marca</th><th>Valor</th><th>Status</th><th>Alterar</th></tr></thead>
+        <tbody>
+          ${todos.slice().reverse().map((p, i) => {
+            const realIdx = todos.length - 1 - i;
+            return `<tr>
+              <td style="font-size:0.78rem;color:#888">${p.data}</td>
+              <td><span class="badge badge-verde">${p.vendedor}</span></td>
+              <td><strong>${p.cliente}</strong></td>
+              <td>${p.cidade || '—'}</td>
+              <td>${p.marca}</td>
+              <td>${p.valor ? 'R$ ' + p.valor.toLocaleString('pt-BR', {minimumFractionDigits:2}) : '—'}</td>
+              <td>${badgeStatus(p.status)}</td>
+              <td><select onchange="atualizarStatusPedido(${realIdx}, this.value)" style="font-size:0.75rem;padding:0.3rem 0.5rem;border-radius:6px;border:1px solid #ddd;background:white;cursor:pointer">
+                ${statusOps.map(s => `<option value="${s}"${p.status === s ? ' selected' : ''}>${s}</option>`).join('')}
+              </select></td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function atualizarStatusPedido(idx, novoStatus) {
+  const lista = JSON.parse(localStorage.getItem('gsr_pedidos') || '[]');
+  if (lista[idx]) {
+    lista[idx].status = novoStatus;
+    localStorage.setItem('gsr_pedidos', JSON.stringify(lista));
+    renderTodosPedidos();
+    renderMeusPedidos();
+  }
+}
+
+function renderRanking() {
+  const container = document.getElementById('rankingContainer');
+  if (!container) return;
+  const agora = new Date();
+  const todos = JSON.parse(localStorage.getItem('gsr_pedidos') || '[]');
+  const por = {};
+  todos.forEach(p => {
+    try {
+      const pt = p.data.split(/[\/ ,:]/);
+      const d = new Date(parseInt(pt[2]), parseInt(pt[1]) - 1, parseInt(pt[0]));
+      if (d.getMonth() !== agora.getMonth() || d.getFullYear() !== agora.getFullYear()) return;
+    } catch { return; }
+    if (!por[p.vendedor]) por[p.vendedor] = { qtd: 0, valor: 0 };
+    por[p.vendedor].qtd++;
+    por[p.vendedor].valor += p.valor || 0;
+  });
+  const ranking = Object.entries(por).map(([v, d]) => ({vendedor: v, ...d})).sort((a, b) => b.valor - a.valor);
+  if (ranking.length === 0) {
+    container.innerHTML = '<p style="color:#bbb;font-style:italic;font-size:0.88rem">Sem dados para o mês atual.</p>';
+    return;
+  }
+  const medals = ['🥇', '🥈', '🥉'];
+  container.innerHTML = `
+    <table class="tabela-comercial">
+      <thead><tr><th>#</th><th>Vendedor</th><th>Pedidos no mês</th><th>Valor total</th></tr></thead>
+      <tbody>
+        ${ranking.map((r, i) => `<tr>
+          <td style="font-weight:700;color:var(--dourado);font-size:1.1rem">${medals[i] || (i+1)+'º'}</td>
+          <td><strong>${r.vendedor}</strong></td>
+          <td>${r.qtd} pedido${r.qtd !== 1 ? 's' : ''}</td>
+          <td style="color:var(--verde-escuro);font-weight:600">R$ ${r.valor.toLocaleString('pt-BR', {minimumFractionDigits:2})}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function renderCandidaturasGestao() {
+  const container = document.getElementById('candidaturasGestaoContainer');
+  if (!container) return;
+  const lista = JSON.parse(localStorage.getItem('gsr_candidaturas') || '[]');
+  if (lista.length === 0) {
+    container.innerHTML = '<p style="color:#bbb;text-align:center;padding:1.5rem;font-style:italic;font-size:0.88rem">Nenhuma candidatura recebida ainda.</p>';
+    return;
+  }
+  container.innerHTML = `
+    <p style="font-size:0.82rem;color:#999;margin-bottom:0.8rem">${lista.length} candidatura${lista.length !== 1 ? 's' : ''} recebida${lista.length !== 1 ? 's' : ''}</p>
+    <div style="overflow-x:auto">
+      <table class="tabela-comercial">
+        <thead><tr><th>Nome</th><th>Cidade</th><th>WhatsApp</th><th>Experiência</th><th>Segmento</th><th>Data</th></tr></thead>
+        <tbody>
+          ${lista.slice().reverse().map(c => `<tr>
+            <td><strong style="color:var(--verde-escuro)">${c.nome || '—'}</strong></td>
+            <td>${c.cidade || '—'}</td>
+            <td>${c.whatsapp || '—'}</td>
+            <td>${c.experiencia || '—'}</td>
+            <td>${c.segmento || '—'}</td>
+            <td style="font-size:0.78rem;color:#888">${c.data || '—'}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function renderCandidaturas() {
+  const lista = JSON.parse(localStorage.getItem('gsr_candidaturas') || '[]');
+  const container = document.getElementById('candidaturasTabela');
+  if (!container) return;
+
+  if (lista.length === 0) {
+    container.innerHTML = '<p style="color:#999;text-align:center;padding:2rem 0">Nenhuma candidatura recebida ainda.</p>';
+    return;
+  }
+
+  container.innerHTML = `
+    <p style="font-size:0.82rem;color:#999;margin-bottom:1rem">${lista.length} candidatura${lista.length !== 1 ? 's' : ''} recebida${lista.length !== 1 ? 's' : ''}</p>
+    <div style="overflow-x:auto">
+      <table class="tabela-comercial">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Cidade / UF</th>
+            <th>WhatsApp</th>
+            <th>Experiência</th>
+            <th>Segmento</th>
+            <th>Data de envio</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${lista.slice().reverse().map(c => `
+            <tr>
+              <td><strong style="color:var(--verde-escuro)">${c.nome || '—'}</strong></td>
+              <td>${c.cidade || '—'}</td>
+              <td>${c.whatsapp || '—'}</td>
+              <td>${c.experiencia || '—'}</td>
+              <td>${c.segmento || '—'}</td>
+              <td style="font-size:0.78rem;color:#888">${c.data || '—'}</td>
+            </tr>
+            ${c.mensagem ? `<tr><td colspan="6" style="background:#fafafa;font-size:0.82rem;color:#666;font-style:italic;padding:0.6rem 1rem">💬 ${c.mensagem}</td></tr>` : ''}
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+</script>
+</body>
+</html>
